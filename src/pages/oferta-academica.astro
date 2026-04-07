@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <main class="min-h-screen pt-32 px-6 flex flex-col items-center">
+        <h1 class="text-5xl font-bold text-umb-dorado mb-8 text-center">
+            Oferta Académica
+        </h1>
+        <div
+            class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md w-full max-w-4xl text-center"
+        >
+            <p class="text-xl opacity-80 mb-8">
+                Descubre las licenciaturas e ingenierías que tenemos para ti.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div
+                    class="p-6 bg-black/40 rounded-2xl border border-white/5 hover:border-umb-verde transition cursor-pointer"
+                >
+                    <h3 class="text-xl font-bold text-umb-verde mb-2">
+                        Ingenierías
+                    </h3>
+                    <p class="text-sm opacity-70">
+                        Ingeniería Tics y Industrial
+                    </p>
+                </div>
+
+                <div
+                    class="p-6 bg-black/40 rounded-2xl border border-white/5 hover:border-umb-dorado transition cursor-pointer"
+                >
+                    <h3 class="text-xl font-bold text-umb-dorado mb-2">
+                        Licenciatura en Derecho
+                    </h3>
+                    <p class="text-sm opacity-70">
+                        Prepara profesionistas en Derecho con habilidades para
+                        dirigir asuntos legales, administrar recursos jurídicos
+                        y promover la justicia dentro de la sociedad.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

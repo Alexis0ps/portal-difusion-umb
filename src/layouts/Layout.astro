@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Portal UMB</title>
+	</head>
+	<body class="h-full bg-white text-gray-900 antialiased font-sans">
+		<header
+			class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100"
+		>
+			<nav
+				class="container mx-auto flex items-center justify-between p-5"
+			>
+				<div class="flex items-center gap-2">
+					<img
+						src="/img/logo_umb_final.png"
+						alt="UMB Logo"
+						class="h-16 w-auto z-0"
+					/>
+				</div>
+				<ul
+					class="flex items-center justify-end w-full gap-8 text-sm font-bold text-gray-600 pr-4"
+				>
+					<li>
+						<a
+							href="/"
+							class="hover:text-umb-verde transition-colors duration-300"
+							>Inicio</a
+						>
+					</li>
+					<li>
+						<a
+							href="/noticias"
+							class="hover:text-umb-verde transition-colors duration-300"
+							>Noticias</a
+						>
+					</li>
+					<li>
+						<a
+							href="/convocatorias"
+							class="hover:text-umb-verde transition-colors duration-300"
+							>Convocatorias</a
+						>
+					</li>
+					<li>
+						<a
+							href="/oferta-academica"
+							class="hover:text-umb-verde transition-colors duration-300"
+							>Oferta Académica</a
+						>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<slot />
+
+		<footer
+			class="w-full text-center p-6 border-t border-gray-100 bg-white relative z-20 mt-12"
+		>
+			<p class="text-sm font-medium text-gray-500">
+				<span class="text-umb-verde"></span> Universidad Mexiquense del Bicentenario
+				<span class="text-umb-verde"></span>
+			</p>
+		</footer>
+	</body>
+</html>

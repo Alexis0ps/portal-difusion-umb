@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout />
+<section class="relative py-20 overflow-hidden min-h-screen pt-32">
+    <img
+        src="/umb-tecnologia-textura.png"
+        alt="Atmosfera Tecnologia UMB"
+        class="absolute top-0 left-0 w-full h-full object-cover opacity-5 mix-blend-overlay"
+    />
+    <div class="container mx-auto px-6 z-10 relative">
+        <h2 class="text-4xl font-bold mb-10 text-white text-center">
+            Últimas Noticias
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+                class="bg-black/50 p-6 rounded-2xl border border-white/10 shadow-lg"
+            >
+                <h3 class="text-xl font-semibold mb-2">
+                    Convocatoria de Admisión 2026
+                </h3>
+                <p class="text-sm opacity-80 mb-4">
+                    Se abre el periodo de registro para el ciclo escolar
+                    2026-2027.
+                </p>
+                <a href="#" class="text-umb-dorado text-sm font-medium"
+                    >Leer más →</a
+                >
+            </div>
+            <div
+                class="bg-black/50 p-6 rounded-2xl border border-white/10 shadow-lg"
+            >
+                <h3 class="text-xl font-semibold mb-2">Nuevo Edificio</h3>
+                <p class="text-sm opacity-80 mb-4"></p>
+                <a href="#" class="text-umb-dorado text-sm font-medium"
+                    >Leer más →</a
+                >
+            </div>
+            <div
+                class="bg-black/50 p-6 rounded-2xl border border-white/10 shadow-lg"
+            >
+                <h3 class="text-xl font-semibold mb-2">Alumnos</h3>
+                <p class="text-sm opacity-80 mb-4"></p>
+                <a href="#" class="text-umb-dorado text-sm font-medium"
+                    >Leer más →</a
+                >
+            </div>
+        </div>
+    </div>
+</section>

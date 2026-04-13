@@ -14,7 +14,7 @@ const noticias = await Astro.glob<any>("../content/noticias/*.md");
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Aquí Astro toma cada noticia y crea una tarjeta para ella */}
             {
-                noticias.map((noticia) => (
+                noticias.map((noticia: any) => (
                     <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
                         {noticia.frontmatter.image && (
                             <img

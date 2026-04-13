@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main # O la rama que estés usando
+
+media_folder: "public/img/uploads" # Dónde se guardan las imágenes subidas
+public_folder: "/img/uploads"      # Cómo se enlazan las imágenes en la web
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    folder: "src/content/noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Fecha de publicación", name: "date", widget: "datetime"}
+      - {label: "Imagen principal", name: "image", widget: "image", required: false}
+      - {label: "Cuerpo de la noticia", name: "body", widget: "markdown"}
+
+  - name: "convocatorias"
+    label: "Convocatorias"
+    folder: "src/content/convocatorias"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Fecha de cierre", name: "deadline", widget: "datetime"}
+      - {label: "Enlace al PDF", name: "pdf_link", widget: "file", required: false}
+      - {label: "Descripción", name: "body", widget: "markdown"}

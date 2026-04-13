@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 
 // Esta línea va a la carpeta del CMS y trae todos los archivos de noticias
-const noticias = await Astro.glob("../content/noticias/*.md");
+const noticias = await Astro.glob<any>("../content/noticias/*.md");
 ---
 
 <Layout>
@@ -32,9 +32,15 @@ const noticias = await Astro.glob("../content/noticias/*.md");
                             <h2 class="text-xl font-bold text-gray-800 mb-3">
                                 {noticia.frontmatter.title}
                             </h2>
-                            <p class="text-gray-600 font-medium hover:text-umb-verde cursor-pointer">
-                                Leer artículo &rarr;
-                            </p>
+                            {/* AQUÍ ESTÁ EL ENLACE CONECTADO */}
+                            <a
+                                href={`/noticias/${noticia.file.split("/").pop().split(".").shift()}`}
+                                class="group inline-block mt-2"
+                            >
+                                <p class="text-gray-600 font-medium group-hover:text-umb-verde transition-colors">
+                                    Leer artículo &rarr;
+                                </p>
+                            </a>
                         </div>
                     </article>
                 ))

@@ -2,7 +2,10 @@
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-    const noticias = await Astro.glob<any>("../content/noticias/*.md");
+    // 1. Ruta corregida y <any> eliminado
+    const posts = await Astro.glob("../../content/noticias/*.md");
+
+    // 2. Ahora usamos la variable correcta "posts"
     return posts.map((post) => ({
         params: {
             slug: post.file.split("/").pop().split(".").shift(),
@@ -42,3 +45,4 @@ const { Content, frontmatter } = Astro.props.post;
         </div>
     </article>
 </Layout>
+s

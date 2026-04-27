@@ -1,46 +1,80 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 
-// Esta línea va a la carpeta del CMS y trae todos los archivos de noticias
-const noticias = await Astro.glob<any>("../content/noticias/*.md");
+// 1. Traer todas las noticias desde la carpeta del CMS
+const todasLasNoticias = await Astro.glob<any>("../../content/noticias/*.md");
+
+// 2. Ordenarlas de la más nueva a la más vieja
+const noticiasRecientes = todasLasNoticias.sort(
+    (a, b) =>
+        new Date(b.frontmatter.date).valueOf() -
+        new Date(a.frontmatter.date).valueOf(),
+);
 ---
 
 <Layout>
-    <main class="container mx-auto pt-32 px-5 min-h-screen">
-        <h1 class="text-4xl font-bold text-gray-900 mb-10">
-            Noticias Relevantes
-        </h1>
+    <main class="container mx-auto pt-32 px-5 min-h-screen pb-24">
+        <div class="text-center mb-16">
+            <span
+                class="text-umb-verde font-bold text-sm tracking-wider uppercase mb-2 block"
+                >Mantente Informado</span
+            >
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">
+                Noticias UMB
+            </h1>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">
+                Descubre las últimas novedades, eventos y avisos importantes de
+                la Universidad Mexiquense del Bicentenario.
+            </p>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Aquí Astro toma cada noticia y crea una tarjeta para ella */}
             {
-                noticias.map((noticia: any) => (
-                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
-                        {noticia.frontmatter.image && (
-                            <img
-                                src={noticia.frontmatter.image}
-                                alt={noticia.frontmatter.title}
-                                class="w-full h-48 object-cover"
-                            />
+                noticiasRecientes.map((noticia: any) => (
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
+                        {/* Imagen con efecto hover y etiqueta flotante de fecha */}
+                        {noticia.frontmatter.image ? (
+                            <div class="overflow-hidden h-56 relative">
+                                <img
+                                    src={noticia.frontmatter.image}
+                                    alt={noticia.frontmatter.title}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm">
+                                    <span class="text-xs font-bold text-umb-verde uppercase">
+                                        {new Date(
+                                            noticia.frontmatter.date,
+                                        ).toLocaleDateString("es-MX", {
+                                            day: "numeric",
+                                            month: "short",
+                                        })}
+                                    </span>
+                                </div>
+                            </div>
+                        ) : (
+                            <div class="h-56 bg-gray-50 flex items-center justify-center">
+                                <span class="text-4xl">📰</span>
+                            </div>
                         )}
-                        <div class="p-6">
-                            <p class="text-sm text-umb-verde font-semibold mb-2">
-                                {new Date(
-                                    noticia.frontmatter.date,
-                                ).toLocaleDateString("es-MX")}
-                            </p>
-                            <h2 class="text-xl font-bold text-gray-800 mb-3">
+
+                        {/* Contenido de la tarjeta */}
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h2 class="text-xl font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-umb-verde transition-colors">
                                 {noticia.frontmatter.title}
                             </h2>
-                            {/* AQUÍ ESTÁ EL ENLACE CONECTADO */}
-                            <a
-                                href={`/noticias/${noticia.file.split("/").pop().split(".").shift()}`}
-                                class="group inline-block mt-2"
-                            >
-                                <p class="text-gray-600 font-medium group-hover:text-umb-verde transition-colors">
-                                    Leer artículo &rarr;
-                                </p>
-                            </a>
+
+                            {/* Botón anclado al fondo */}
+                            <div class="mt-auto pt-5 border-t border-gray-50">
+                                <a
+                                    href={`/noticias/${noticia.file.split("/").pop().split(".").shift()}`}
+                                    class="inline-flex items-center text-gray-500 font-semibold group-hover:text-umb-verde transition-colors"
+                                >
+                                    Leer artículo{" "}
+                                    <span class="ml-2 transform group-hover:translate-x-1 transition-transform">
+                                        &rarr;
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 ))

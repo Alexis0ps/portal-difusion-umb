@@ -17,12 +17,12 @@ const { Content, frontmatter } = Astro.props.post as any;
 ---
 
 <Layout>
-    <div class="bg-[#121212] min-h-screen text-gray-300 font-sans pb-24 pt-28">
+    <div class="bg-slate-50 min-h-screen text-gray-800 font-sans pb-24 pt-28">
         <div class="max-w-2xl mx-auto px-6">
             <div class="flex justify-between items-center mb-8">
                 <a
                     href="/noticias"
-                    class="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white hover:bg-zinc-800 transition shadow-md"
+                    class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-700 hover:text-umb-verde hover:bg-green-50 border border-gray-200 transition shadow-sm"
                 >
                     <svg
                         class="w-5 h-5"
@@ -38,7 +38,7 @@ const { Content, frontmatter } = Astro.props.post as any;
                 </a>
                 <div class="flex gap-4">
                     <button
-                        class="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white hover:bg-zinc-800 transition"
+                        class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-700 hover:text-umb-verde hover:bg-green-50 border border-gray-200 transition shadow-sm"
                     >
                         <svg
                             class="w-5 h-5"
@@ -54,7 +54,7 @@ const { Content, frontmatter } = Astro.props.post as any;
                         >
                     </button>
                     <button
-                        class="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white hover:bg-zinc-800 transition"
+                        class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-700 hover:text-umb-verde hover:bg-green-50 border border-gray-200 transition shadow-sm"
                     >
                         <svg
                             class="w-5 h-5"
@@ -74,25 +74,28 @@ const { Content, frontmatter } = Astro.props.post as any;
 
             {
                 frontmatter.image && (
-                    <div class="w-full h-[300px] md:h-[400px] rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl">
+                    <div class="w-full h-[300px] md:h-[450px] rounded-[2.5rem] overflow-hidden mb-10 shadow-xl shadow-gray-200/50 bg-white border-8 border-white">
                         <img
                             src={frontmatter.image}
                             alt={frontmatter.title}
-                            class="w-full h-full object-cover"
+                            class="w-full h-full object-cover rounded-[1.5rem]"
                         />
                     </div>
                 )
             }
 
             <div
-                class="flex justify-between items-center text-xs font-semibold tracking-wider uppercase mb-5"
+                class="flex flex-wrap justify-between items-center text-xs font-bold tracking-wider uppercase mb-6 gap-4"
             >
-                <span class="text-gray-400">#1 en Tendencia / UMB</span>
                 <span
-                    class="text-white flex items-center gap-1.5 bg-zinc-900 px-3 py-1.5 rounded-full"
+                    class="text-umb-verde bg-green-50 px-4 py-2 rounded-full border border-green-100"
+                    >#1 en Tendencia / UMB</span
+                >
+                <span
+                    class="text-gray-500 flex items-center gap-1.5 bg-white border border-gray-200 px-4 py-2 rounded-full shadow-sm"
                 >
                     <svg
-                        class="w-4 h-4"
+                        class="w-4 h-4 text-umb-verde"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -112,25 +115,27 @@ const { Content, frontmatter } = Astro.props.post as any;
             </div>
 
             <h1
-                class="text-4xl md:text-5xl font-serif text-white leading-[1.15] mb-8"
+                class="text-4xl md:text-5xl font-serif text-gray-900 leading-[1.15] mb-8 font-extrabold tracking-tight"
             >
                 {frontmatter.title}
             </h1>
 
             <div
-                class="flex justify-between items-center mb-10 pb-8 border-b border-zinc-800/80"
+                class="flex justify-between items-center mb-10 pb-8 border-b border-gray-200"
             >
                 <div class="flex items-center gap-3">
                     <div
-                        class="w-11 h-11 rounded-full bg-umb-verde text-white flex items-center justify-center font-bold shadow-lg shadow-green-900/50"
+                        class="w-11 h-11 rounded-full bg-umb-verde text-white flex items-center justify-center font-bold shadow-lg shadow-green-500/30"
                     >
                         U
                     </div>
-                    <span class="text-gray-200 font-medium text-sm md:text-base"
+                    <span class="text-gray-900 font-bold text-sm md:text-base"
                         >Difusión UMB</span
                     >
                 </div>
-                <div class="text-sm text-gray-500 font-medium">
+                <div
+                    class="text-sm text-gray-500 font-semibold bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm"
+                >
                     {
                         new Date(frontmatter.date).toLocaleDateString("es-MX", {
                             day: "numeric",
@@ -142,16 +147,16 @@ const { Content, frontmatter } = Astro.props.post as any;
             </div>
 
             <div
-                class="prose prose-invert prose-lg md:prose-xl max-w-none prose-p:text-gray-300 prose-headings:font-serif prose-headings:text-white prose-a:text-umb-verde leading-relaxed"
+                class="prose prose-lg md:prose-xl max-w-none prose-p:text-gray-600 prose-headings:font-serif prose-headings:text-gray-900 prose-headings:font-extrabold prose-a:text-umb-verde leading-relaxed"
             >
                 <Content />
             </div>
 
             <div
-                class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full flex gap-8 items-center shadow-2xl z-50 backdrop-blur-md bg-opacity-90"
+                class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-gray-200 px-8 py-4 rounded-full flex gap-10 items-center shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] z-50"
             >
                 <button
-                    class="text-white hover:text-umb-verde flex flex-col items-center gap-1 transition"
+                    class="text-gray-400 hover:text-umb-verde hover:scale-110 transition-all duration-300 flex flex-col items-center gap-1"
                 >
                     <svg
                         class="w-6 h-6"
@@ -161,13 +166,13 @@ const { Content, frontmatter } = Astro.props.post as any;
                         ><path
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
+                            stroke-width="2.5"
                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                         ></path></svg
                     >
                 </button>
                 <button
-                    class="text-white hover:text-umb-verde flex flex-col items-center gap-1 transition"
+                    class="text-gray-400 hover:text-umb-verde hover:scale-110 transition-all duration-300 flex flex-col items-center gap-1"
                 >
                     <svg
                         class="w-6 h-6"
@@ -177,13 +182,13 @@ const { Content, frontmatter } = Astro.props.post as any;
                         ><path
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
+                            stroke-width="2.5"
                             d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                         ></path></svg
                     >
                 </button>
                 <button
-                    class="text-white hover:text-umb-verde flex flex-col items-center gap-1 transition"
+                    class="text-gray-400 hover:text-umb-verde hover:scale-110 transition-all duration-300 flex flex-col items-center gap-1"
                 >
                     <svg
                         class="w-6 h-6 transform -rotate-45"
@@ -193,7 +198,7 @@ const { Content, frontmatter } = Astro.props.post as any;
                         ><path
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
+                            stroke-width="2.5"
                             d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg
                     >
                 </button>

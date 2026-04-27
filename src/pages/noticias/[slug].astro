@@ -9,11 +9,7 @@ export async function getStaticPaths() {
     return Object.keys(archivos).map((ruta) => {
         const post = archivos[ruta];
         const slug = ruta.split("/").pop().replace(".md", "");
-
-        return {
-            params: { slug },
-            props: { post },
-        };
+        return { params: { slug }, props: { post } };
     });
 }
 
@@ -21,62 +17,187 @@ const { Content, frontmatter } = Astro.props.post as any;
 ---
 
 <Layout>
-    <div
-        class="fixed inset-0 z-[-1] overflow-hidden bg-white pointer-events-none"
-    >
-        <div
-            class="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-green-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70"
-        >
-        </div>
-    </div>
-
-    <main class="container mx-auto px-5 pt-32 pb-24 relative z-10 max-w-4xl">
-        <article
-            class="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 p-6 md:p-12"
-        >
-            <header class="text-center mb-10">
-                <span
-                    class="inline-block bg-green-100 text-umb-verde font-bold text-sm tracking-wider uppercase px-4 py-1.5 rounded-full mb-6"
+    <div class="bg-[#121212] min-h-screen text-gray-300 font-sans pb-24 pt-28">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="flex justify-between items-center mb-8">
+                <a
+                    href="/noticias"
+                    class="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white hover:bg-zinc-800 transition shadow-md"
                 >
-                    {
-                        new Date(frontmatter.date).toLocaleDateString("es-MX", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                        })
-                    }
-                </span>
-                <h1
-                    class="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8"
-                >
-                    {frontmatter.title}
-                </h1>
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path></svg
+                    >
+                </a>
+                <div class="flex gap-4">
+                    <button
+                        class="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white hover:bg-zinc-800 transition"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                            ></path></svg
+                        >
+                    </button>
+                    <button
+                        class="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white hover:bg-zinc-800 transition"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                            ></path></svg
+                        >
+                    </button>
+                </div>
+            </div>
 
-                {
-                    frontmatter.image && (
+            {
+                frontmatter.image && (
+                    <div class="w-full h-[300px] md:h-[400px] rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl">
                         <img
                             src={frontmatter.image}
                             alt={frontmatter.title}
-                            class="w-full h-[400px] object-cover rounded-3xl shadow-md"
+                            class="w-full h-full object-cover"
                         />
-                    )
-                }
-            </header>
+                    </div>
+                )
+            }
 
             <div
-                class="prose prose-lg max-w-none text-gray-600 leading-relaxed prose-headings:text-gray-900 prose-headings:font-bold prose-a:text-umb-verde hover:prose-a:text-emerald-700 prose-img:rounded-2xl mx-auto px-4"
+                class="flex justify-between items-center text-xs font-semibold tracking-wider uppercase mb-5"
+            >
+                <span class="text-gray-400">#1 en Tendencia / UMB</span>
+                <span
+                    class="text-white flex items-center gap-1.5 bg-zinc-900 px-3 py-1.5 rounded-full"
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        ></path></svg
+                    >
+                    Publicado
+                </span>
+            </div>
+
+            <h1
+                class="text-4xl md:text-5xl font-serif text-white leading-[1.15] mb-8"
+            >
+                {frontmatter.title}
+            </h1>
+
+            <div
+                class="flex justify-between items-center mb-10 pb-8 border-b border-zinc-800/80"
+            >
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-11 h-11 rounded-full bg-umb-verde text-white flex items-center justify-center font-bold shadow-lg shadow-green-900/50"
+                    >
+                        U
+                    </div>
+                    <span class="text-gray-200 font-medium text-sm md:text-base"
+                        >Difusión UMB</span
+                    >
+                </div>
+                <div class="text-sm text-gray-500 font-medium">
+                    {
+                        new Date(frontmatter.date).toLocaleDateString("es-MX", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                        })
+                    }
+                </div>
+            </div>
+
+            <div
+                class="prose prose-invert prose-lg md:prose-xl max-w-none prose-p:text-gray-300 prose-headings:font-serif prose-headings:text-white prose-a:text-umb-verde leading-relaxed"
             >
                 <Content />
             </div>
 
-            <div class="mt-16 pt-8 border-t border-gray-100 text-center">
-                <a
-                    href="/noticias"
-                    class="inline-flex items-center justify-center bg-umb-verde text-white font-bold px-8 py-3 rounded-full hover:bg-emerald-800 transition-colors shadow-lg shadow-green-500/30"
+            <div
+                class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-zinc-900 border border-zinc-800 px-6 py-3 rounded-full flex gap-8 items-center shadow-2xl z-50 backdrop-blur-md bg-opacity-90"
+            >
+                <button
+                    class="text-white hover:text-umb-verde flex flex-col items-center gap-1 transition"
                 >
-                    &larr; Volver a noticias
-                </a>
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        ></path></svg
+                    >
+                </button>
+                <button
+                    class="text-white hover:text-umb-verde flex flex-col items-center gap-1 transition"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                        ></path></svg
+                    >
+                </button>
+                <button
+                    class="text-white hover:text-umb-verde flex flex-col items-center gap-1 transition"
+                >
+                    <svg
+                        class="w-6 h-6 transform -rotate-45"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg
+                    >
+                </button>
             </div>
-        </article>
-    </main>
+        </div>
+    </div>
 </Layout>

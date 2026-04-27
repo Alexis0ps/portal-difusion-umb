@@ -2,19 +2,26 @@
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-    // 1. Ruta corregida y <any> eliminado
-    const posts = await Astro.glob("../../content/noticias/*.md");
+    // 🔥 LA SOLUCIÓN: Usar import.meta.glob (Vite nativo) en lugar de Astro.glob
+    const archivos = import.meta.glob("../../content/noticias/*.md", {
+        eager: true,
+    });
 
-    // 2. Ahora usamos la variable correcta "posts"
-    return posts.map((post) => ({
-        params: {
-            slug: post.file.split("/").pop().split(".").shift(),
-        },
-        props: { post },
-    }));
+    // Mapeamos cada archivo encontrado para crear su ruta
+    return Object.keys(archivos).map((ruta) => {
+        const post = archivos[ruta];
+
+        // Extraemos el nombre exacto del archivo (ej. "mi-noticia")
+        const slug = ruta.split("/").pop().replace(".md", "");
+
+        return {
+            params: { slug },
+            props: { post },
+        };
+    });
 }
 
-const { Content, frontmatter } = Astro.props.post;
+const { Content, frontmatter } = Astro.props.post as any;
 ---
 
 <Layout>
@@ -45,4 +52,3 @@ const { Content, frontmatter } = Astro.props.post;
         </div>
     </article>
 </Layout>
-s

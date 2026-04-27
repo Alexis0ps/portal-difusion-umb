@@ -8,21 +8,6 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<title>Portal UMB</title>
-
-		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-		></script>
-
-		<script is:inline>
-			if (window.netlifyIdentity) {
-				window.netlifyIdentity.on("init", (user) => {
-					if (!user) {
-						window.netlifyIdentity.on("login", () => {
-							document.location.href = "/admin/";
-						});
-					}
-				});
-			}
-		</script>
 	</head>
 	<body class="h-full bg-white text-gray-900 antialiased font-sans">
 		<header
@@ -83,5 +68,21 @@ import "../styles/global.css";
 				<span class="text-umb-verde"></span>
 			</p>
 		</footer>
+
+		<script
+			is:inline
+			src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+		></script>
+		<script is:inline>
+			if (window.netlifyIdentity) {
+				window.netlifyIdentity.on("init", (user) => {
+					if (!user) {
+						window.netlifyIdentity.on("login", () => {
+							document.location.href = "/admin/";
+						});
+					}
+				});
+			}
+		</script>
 	</body>
 </html>

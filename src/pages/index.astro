@@ -1,17 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Traer todas las noticias
-const todasLasNoticias = await Astro.glob<any>("../content/noticias/*.md");
-
-// Ordenarlas de la más nueva a la más vieja
+const archivos = import.meta.glob('../content/noticias/*.md', { eager: true });
+const todasLasNoticias = Object.keys(archivos).map(ruta => ({ ...(archivos[ruta] as any), file: ruta }));
 const noticiasRecientes = todasLasNoticias
-	.sort(
-		(a: any, b: any) =>
-			new Date(b.frontmatter.date).valueOf() -
-			new Date(a.frontmatter.date).valueOf(),
-	)
-	.slice(0, 3);
+    .sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
+    .slice(0, 3);
 ---
 
 new Date(a.frontmatter.date).valueOf(), ) .slice(0, 3); ---

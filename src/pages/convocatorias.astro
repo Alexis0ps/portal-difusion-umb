@@ -1,16 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Traer todas las convocatorias
-const todasLasConvocatorias = await Astro.glob<any>(
-    "../content/convocatorias/*.md",
-);
-
-// Ordenarlas por fecha de cierre (las que cierran más pronto van primero)
+const archivos = import.meta.glob('../content/convocatorias/*.md', { eager: true });
+const todasLasConvocatorias = Object.keys(archivos).map(ruta => ({ ...(archivos[ruta] as any), file: ruta }));
 const convocatorias = todasLasConvocatorias.sort(
-    (a, b) =>
-        new Date(a.frontmatter.deadline).valueOf() -
-        new Date(b.frontmatter.deadline).valueOf(),
+  (a: any, b: any) => new Date(a.frontmatter.deadline).valueOf() - new Date(b.frontmatter.deadline).valueOf()
 );
 ---
 

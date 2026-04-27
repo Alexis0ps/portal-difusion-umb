@@ -1,20 +1,100 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// Traer todas las convocatorias
+const todasLasConvocatorias = await Astro.glob<any>(
+    "../content/convocatorias/*.md",
+);
+
+// Ordenarlas por fecha de cierre (las que cierran más pronto van primero)
+const convocatorias = todasLasConvocatorias.sort(
+    (a, b) =>
+        new Date(a.frontmatter.deadline).valueOf() -
+        new Date(b.frontmatter.deadline).valueOf(),
+);
 ---
 
 <Layout>
-    <main class="min-h-screen pt-32 px-6 flex flex-col items-center">
-        <h1 class="text-5xl font-bold text-umb-verde mb-8 text-center">
-            Convocatorias Vigentes
-        </h1>
-        <div
-            class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md max-w-2xl text-center"
-        >
-            <span class="text-4xl mb-4 block">📅</span>
-            <p class="text-xl opacity-80">
-                Las convocatorias para el próximo ciclo escolar se publicarán en
-                esta sección. Mantente al pendiente.
+    <main class="container mx-auto pt-32 px-5 min-h-screen pb-24">
+        <div class="text-center mb-16">
+            <span
+                class="text-umb-verde font-bold text-sm tracking-wider uppercase mb-2 block"
+                >Procesos de Admisión</span
+            >
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">
+                Convocatorias Abiertas
+            </h1>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">
+                Consulta los requisitos, fechas importantes y descarga los
+                documentos oficiales para formar parte de la Universidad
+                Mexiquense del Bicentenario.
             </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {
+                convocatorias.map((convocatoria: any) => (
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow flex flex-col h-full">
+                        {/* Encabezado con ícono y fecha */}
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center text-red-500 text-2xl shadow-sm">
+                                📅
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">
+                                    Cierre de registro
+                                </p>
+                                <p class="text-red-600 font-extrabold text-lg">
+                                    {new Date(
+                                        convocatoria.frontmatter.deadline,
+                                    ).toLocaleDateString("es-MX", {
+                                        day: "numeric",
+                                        month: "long",
+                                        year: "numeric",
+                                    })}
+                                </p>
+                            </div>
+                        </div>
+
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8">
+                            {convocatoria.frontmatter.title}
+                        </h2>
+
+                        {/* Botón de descarga en la parte inferior */}
+                        <div class="mt-auto">
+                            {convocatoria.frontmatter.pdf_link ? (
+                                <a
+                                    href={convocatoria.frontmatter.pdf_link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center justify-center w-full bg-umb-verde text-white px-6 py-4 rounded-xl font-bold hover:bg-emerald-800 transition-colors gap-2 shadow-sm"
+                                >
+                                    {/* Ícono de descarga SVG */}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                                        />
+                                    </svg>
+                                    Descargar PDF Oficial
+                                </a>
+                            ) : (
+                                <span class="flex items-center justify-center w-full bg-gray-100 text-gray-400 px-6 py-4 rounded-xl font-bold cursor-not-allowed border border-gray-200">
+                                    Documento en preparación
+                                </span>
+                            )}
+                        </div>
+                    </article>
+                ))
+            }
         </div>
     </main>
 </Layout>

@@ -3,150 +3,162 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <main
-        class="min-h-screen pt-32 pb-12 px-6 flex flex-col items-center relative overflow-hidden bg-white"
-    >
-        <div
-            class="absolute -top-20 -left-20 w-[500px] h-[500px] bg-[#7FB239]/10 rounded-full blur-[100px] -z-10"
-        >
-        </div>
-        <div
-            class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#7FB239]/10 rounded-full blur-[120px] -z-10"
-        >
-        </div>
-
-        <div class="w-full max-w-2xl z-10">
-            <div class="text-center mb-10">
+    <main class="min-h-screen bg-white pt-32 pb-24 font-sans">
+        <div class="max-w-3xl mx-auto px-5">
+            <!-- Encabezado -->
+            <div class="text-center mb-12">
                 <h1
-                    class="text-5xl md:text-6xl font-extrabold text-[#7FB239] mb-4 tracking-tighter leading-tight"
+                    class="text-5xl md:text-6xl font-extrabold text-[#7CB342] tracking-tight mb-6"
                 >
                     Registro de Aspirantes
                 </h1>
-                <p class="text-lg text-gray-600 font-medium leading-relaxed">
+                <p
+                    class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto font-medium"
+                >
                     Déjanos tus datos para iniciar tu proceso de admisión a la
                     Universidad Mexiquense del Bicentenario.
                 </p>
             </div>
 
+            <!-- Contenedor del Formulario -->
             <div
-                class="bg-white border border-gray-100 p-8 md:p-10 rounded-[2.5rem] shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+                class="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 md:p-12 border border-gray-100"
             >
-                <form class="flex flex-col gap-6">
+                <!-- AQUÍ ESTÁ LA MAGIA DE NETLIFY: data-netlify="true" -->
+                <form
+                    name="registro-aspirantes"
+                    method="POST"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                    class="space-y-6"
+                >
+                    <!-- Campo oculto anti-spam -->
+                    <p class="hidden">
+                        <label
+                            >No llenes esto si eres humano: <input
+                                name="bot-field"
+                            /></label
+                        >
+                    </p>
+
+                    <!-- Fila 1: Nombres y Apellidos -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-2">
+                        <div>
                             <label
-                                for="nombre"
-                                class="text-sm font-extrabold text-gray-800 tracking-wide"
-                                >Nombre(s) *</label
+                                class="block text-sm font-extrabold text-gray-900 mb-2"
+                                for="nombres">Nombre(s) *</label
                             >
                             <input
                                 type="text"
-                                id="nombre"
+                                id="nombres"
+                                name="nombres"
                                 required
                                 placeholder="Ej. Juan"
-                                class="bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder-gray-400 font-medium focus:outline-none focus:border-[#7FB239] focus:ring-4 focus:ring-[#7FB239]/15 transition-all"
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
                             />
                         </div>
-                        <div class="flex flex-col gap-2">
+                        <div>
                             <label
-                                for="apellidos"
-                                class="text-sm font-extrabold text-gray-800 tracking-wide"
-                                >Apellidos *</label
+                                class="block text-sm font-extrabold text-gray-900 mb-2"
+                                for="apellidos">Apellidos *</label
                             >
                             <input
                                 type="text"
                                 id="apellidos"
+                                name="apellidos"
                                 required
                                 placeholder="Ej. Pérez García"
-                                class="bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder-gray-400 font-medium focus:outline-none focus:border-[#7FB239] focus:ring-4 focus:ring-[#7FB239]/15 transition-all"
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
                             />
                         </div>
                     </div>
 
+                    <!-- Fila 2: Correo y Teléfono -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-2">
+                        <div>
                             <label
-                                for="correo"
-                                class="text-sm font-extrabold text-gray-800 tracking-wide"
-                                >Correo Electrónico *</label
+                                class="block text-sm font-extrabold text-gray-900 mb-2"
+                                for="correo">Correo Electrónico *</label
                             >
                             <input
                                 type="email"
                                 id="correo"
+                                name="correo"
                                 required
                                 placeholder="juan@correo.com"
-                                class="bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder-gray-400 font-medium focus:outline-none focus:border-[#7FB239] focus:ring-4 focus:ring-[#7FB239]/15 transition-all"
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
                             />
                         </div>
-                        <div class="flex flex-col gap-2">
+                        <div>
                             <label
-                                for="telefono"
-                                class="text-sm font-extrabold text-gray-800 tracking-wide"
-                                >Teléfono Celular *</label
+                                class="block text-sm font-extrabold text-gray-900 mb-2"
+                                for="telefono">Teléfono Celular *</label
                             >
                             <input
                                 type="tel"
                                 id="telefono"
+                                name="telefono"
                                 required
                                 placeholder="10 dígitos"
-                                class="bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder-gray-400 font-medium focus:outline-none focus:border-[#7FB239] focus:ring-4 focus:ring-[#7FB239]/15 transition-all"
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
                             />
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-2">
+                    <!-- Fila 3: CURP -->
+                    <div>
                         <label
-                            for="curp"
-                            class="text-sm font-extrabold text-gray-800 tracking-wide"
-                            >CURP *</label
+                            class="block text-sm font-extrabold text-gray-900 mb-2"
+                            for="curp">CURP *</label
                         >
                         <input
                             type="text"
                             id="curp"
+                            name="curp"
                             required
+                            placeholder="INGRESA TUS 18 CARACTERES"
+                            class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white uppercase"
                             maxlength="18"
-                            placeholder="Ingresa tus 18 caracteres"
-                            class="bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 placeholder-gray-400 font-medium focus:outline-none focus:border-[#7FB239] focus:ring-4 focus:ring-[#7FB239]/15 transition-all uppercase"
                         />
                     </div>
 
-                    <div class="flex flex-col gap-2">
+                    <!-- Fila 4: Carrera de Interés -->
+                    <div>
                         <label
-                            for="carrera"
-                            class="text-sm font-extrabold text-gray-800 tracking-wide"
-                            >Carrera de Interés *</label
+                            class="block text-sm font-extrabold text-gray-900 mb-2"
+                            for="carrera">Carrera de Interés *</label
                         >
                         <select
                             id="carrera"
+                            name="carrera"
                             required
-                            class="bg-gray-50 border border-gray-200 rounded-2xl px-5 py-4 text-gray-900 font-medium focus:outline-none focus:border-[#7FB239] focus:ring-4 focus:ring-[#7FB239]/15 transition-all appearance-none cursor-pointer"
+                            class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white appearance-none cursor-pointer"
                         >
                             <option value="" disabled selected
                                 >Selecciona una opción...</option
                             >
-                            <option value="sistemas"
-                                >Ingeniería en Tecnologias de la informacion y
-                                comunicacion</option
-                            >
-                            <option value="administracion"
-                                >Ingenieria en Industrial</option
-                            >
-                            <option value="enfermeria"
+                            <option value="Licenciatura en Derecho"
                                 >Licenciatura en Derecho</option
+                            >
+                            <option value="Ingeniería Industrial"
+                                >Ingeniería Industrial</option
+                            >
+                            <option
+                                value="Ingeniería en Tecnologías de la Información"
+                                >Ingeniería en Tecnologías de la Información</option
                             >
                         </select>
                     </div>
 
-                    <button
-                        type="submit"
-                        class="mt-6 w-full bg-[#7FB239] text-white font-extrabold text-lg py-4 rounded-full shadow-[0_10px_20px_rgba(127,178,57,0.3)] hover:shadow-[0_15px_25px_rgba(127,178,57,0.4)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 group"
-                    >
-                        Enviar Registro
-                        <span
-                            class="group-hover:translate-x-1 transition-transform"
-                            >📝</span
+                    <!-- Botón de Envío -->
+                    <div class="pt-4">
+                        <button
+                            type="submit"
+                            class="w-full bg-[#7CB342] text-white font-extrabold text-lg py-4 rounded-2xl hover:bg-emerald-700 hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-green-500/30"
                         >
-                    </button>
+                            Enviar Registro 📝
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

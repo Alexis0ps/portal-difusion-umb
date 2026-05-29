@@ -1,43 +1,114 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// Aquí puedes editar, agregar o quitar las carreras que ofrece la UMB
+const programas = [
+    {
+        tipo: "Licenciatura",
+        nombre: "Derecho",
+        descripcion: "Forma profesionales capaces de argumentar, interpretar y aplicar las normas jurídicas con un alto sentido de ética, justicia y responsabilidad social.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        icono: "⚖️",
+        color: "bg-amber-50 text-amber-600 border-amber-200"
+    },
+    {
+        tipo: "Ingeniería",
+        nombre: "Industrial",
+        descripcion: "Diseña, mejora e instala sistemas integrados de personas, materiales, información, equipo y energía para optimizar los procesos de producción.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        icono: "⚙️",
+        color: "bg-blue-50 text-blue-600 border-blue-200"
+    },
+    {
+        tipo: "Ingeniería",
+        nombre: "Tecnologías de la Información",
+        descripcion: "Desarrolla software, gestiona redes y administra bases de datos para dar soluciones tecnológicas innovadoras a las empresas.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        icono: "💻",
+        color: "bg-indigo-50 text-indigo-600 border-indigo-200"
+    }
+];
 ---
 
 <Layout>
-    <main class="min-h-screen pt-32 px-6 flex flex-col items-center">
-        <h1 class="text-5xl font-bold text-umb-dorado mb-8 text-center">
-            Oferta Académica
-        </h1>
-        <div
-            class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md w-full max-w-4xl text-center"
-        >
-            <p class="text-xl opacity-80 mb-8">
-                Descubre las licenciaturas e ingenierías que tenemos para ti.
-            </p>
+    <main class="min-h-screen bg-slate-50 pt-32 pb-24 font-sans relative overflow-hidden">
+        
+        <!-- Círculos de fondo difuminados (Estilo Landing) -->
+        <div class="absolute top-[-10%] left-[-5%] w-[40rem] h-[40rem] bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-emerald-50 rounded-full mix-blend-multiply filter blur-3xl opacity-50 pointer-events-none"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                <div
-                    class="p-6 bg-black/40 rounded-2xl border border-white/5 hover:border-umb-verde transition cursor-pointer"
-                >
-                    <h3 class="text-xl font-bold text-umb-verde mb-2">
-                        Ingenierías
-                    </h3>
-                    <p class="text-sm opacity-70">
-                        Ingeniería Tics y Industrial
-                    </p>
-                </div>
+        <div class="max-w-7xl mx-auto px-5 relative z-10">
+            
+            <!-- Encabezado -->
+            <div class="text-center mb-20">
+                <span class="inline-block py-1.5 px-5 rounded-full bg-white border border-gray-200 text-umb-verde font-bold text-sm tracking-widest uppercase mb-6 shadow-sm">
+                    Descubre tu vocación
+                </span>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6">
+                    Oferta <span class="text-umb-verde">Académica</span>
+                </h1>
+                <p class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto font-medium">
+                    Programas educativos de excelencia diseñados para formarte como un profesional altamente competitivo en el mercado laboral actual.
+                </p>
+            </div>
 
-                <div
-                    class="p-6 bg-black/40 rounded-2xl border border-white/5 hover:border-umb-dorado transition cursor-pointer"
-                >
-                    <h3 class="text-xl font-bold text-umb-dorado mb-2">
-                        Licenciatura en Derecho
-                    </h3>
-                    <p class="text-sm opacity-70">
-                        Prepara profesionistas en Derecho con habilidades para
-                        dirigir asuntos legales, administrar recursos jurídicos
-                        y promover la justicia dentro de la sociedad.
-                    </p>
-                </div>
+            <!-- Cuadrícula de Carreras -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {programas.map((programa) => {
+                    return (
+                        <div class="group bg-white rounded-[2.5rem] p-8 shadow-xl shadow-gray-200/40 border border-gray-100 hover:-translate-y-2 transition-all duration-300 flex flex-col h-full relative overflow-hidden">
+                            
+                            <!-- Icono y Etiqueta -->
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="w-16 h-16 rounded-2xl bg-slate-50 border border-gray-100 flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 transition-transform duration-300">
+                                    {programa.icono}
+                                </div>
+                                <!-- Usamos class:list en lugar del template literal que causaba error -->
+                                <span class:list={["px-4 py-1.5 rounded-full text-xs font-bold border", programa.color]}>
+                                    {programa.tipo}
+                                </span>
+                            </div>
+
+                            <!-- Título y Descripción -->
+                            <div class="flex-grow">
+                                <h2 class="text-2xl font-serif font-extrabold text-gray-900 mb-4 leading-tight group-hover:text-umb-verde transition-colors">
+                                    {programa.nombre}
+                                </h2>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                    {programa.descripcion}
+                                </p>
+                            </div>
+
+                            <!-- Detalles (Duración y Modalidad) -->
+                            <div class="pt-6 border-t border-gray-100 mt-auto flex justify-between items-center mb-8">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Duración</span>
+                                    <span class="text-sm font-semibold text-gray-800 flex items-center gap-1.5">
+                                        <svg class="w-4 h-4 text-umb-verde" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        {programa.duracion}
+                                    </span>
+                                </div>
+                                <div class="flex flex-col text-right">
+                                    <span class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Modalidad</span>
+                                    <span class="text-sm font-semibold text-gray-800 flex items-center gap-1.5 justify-end">
+                                        <svg class="w-4 h-4 text-umb-verde" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011 1v5H8v-5a1 1 0 011-1h2z"></path></svg>
+                                        {programa.modalidad}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Botón de acción -->
+                            <a href="/registro" class="inline-flex items-center justify-center gap-2 w-full bg-slate-50 hover:bg-umb-verde text-gray-700 hover:text-white font-bold py-3.5 rounded-xl transition-all duration-300 border border-gray-200 hover:border-umb-verde group/btn">
+                                Me interesa
+                                <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
+                            </a>
+
+                        </div>
+                    );
+                })}
             </div>
         </div>
     </main>

@@ -1,29 +1,63 @@
+# public/admin/config.yml
+
+# 1. CONFIGURACIÓN GLOBAL
+locale: "es" # Traduce todo el panel de administración al español
 backend:
   name: git-gateway
-  branch: main # O la rama que estés usando
+  branch: main # Asegúrate de que tu rama en GitHub se llame 'main' (o cámbialo a 'master')
 
-media_folder: "public/img/uploads" # Dónde se guardan las imágenes subidas
-public_folder: "/img/uploads"      # Cómo se enlazan las imágenes en la web
+# 2. RUTAS DE ARCHIVOS MULTIMEDIA
+media_folder: "public/img/uploads" # Dónde se guardan las imágenes y PDFs en tu repositorio
+public_folder: "/img/uploads"      # Cómo las lee el navegador en la página web
 
+# 3. COLECCIONES DE DATOS (Lo que el usuario puede editar)
 collections:
+  
+  # --- SECCIÓN: NOTICIAS ---
   - name: "noticias"
-    label: "Noticias"
+    label: "Noticias y Boletines"
+    label_singular: "Noticia"
     folder: "src/content/noticias"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Fecha de publicación", name: "date", widget: "datetime"}
+      - {label: "Título de la noticia", name: "title", widget: "string"}
+      - {label: "Fecha de publicación", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false}
       - {label: "Imagen principal", name: "image", widget: "image", required: false}
       - {label: "Cuerpo de la noticia", name: "body", widget: "markdown"}
 
+  # --- SECCIÓN: CONVOCATORIAS ---
   - name: "convocatorias"
-    label: "Convocatorias"
+    label: "Convocatorias de Admisión"
+    label_singular: "Convocatoria"
     folder: "src/content/convocatorias"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Fecha de cierre", name: "deadline", widget: "datetime"}
-      - {label: "Enlace al PDF", name: "pdf_link", widget: "file", required: false}
-      - {label: "Descripción", name: "body", widget: "markdown"}
+      - {label: "Título de la Convocatoria", name: "title", widget: "string"}
+      - {label: "Fecha de cierre (Límite)", name: "deadline", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false}
+      # Restringimos este campo para que SOLO acepte PDFs
+      - {label: "Documento PDF Oficial", name: "pdf_link", widget: "file", required: false, extension: ["pdf"]}
+      - {label: "Descripción o Requisitos", name: "body", widget: "markdown"}
+
+  # --- SECCIÓN: OFERTA ACADÉMICA (NUEVO) ---
+  - name: "carreras"
+    label: "Oferta Académica (Carreras)"
+    label_singular: "Carrera"
+    folder: "src/content/carreras"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nombre de la Carrera", name: "nombre", widget: "string", hint: "Ej. Derecho"}
+      - {label: "Tipo de Grado", name: "tipo", widget: "select", options: ["Licenciatura", "Ingeniería", "Maestría", "Especialidad"]}
+      - {label: "Duración", name: "duracion", widget: "string", default: "9 semestres"}
+      - {label: "Modalidad", name: "modalidad", widget: "select", options: ["Presencial", "En línea", "Híbrida"], default: "Presencial"}
+      - {label: "Ícono (Emoji)", name: "icono", widget: "string", hint: "Copia y pega un emoji representativo. Ej. ⚖️, 💻, ⚙️"}
+      # El color lo dejamos como un selector para que el administrador no tenga que escribir código CSS
+      - {label: "Color de la Tarjeta", name: "color", widget: "select", options: [
+          {label: "Naranja (Derecho)", value: "bg-amber-50 text-amber-600 border-amber-200"},
+          {label: "Azul (Industrial)", value: "bg-blue-50 text-blue-600 border-blue-200"},
+          {label: "Morado (TI)", value: "bg-indigo-50 text-indigo-600 border-indigo-200"},
+          {label: "Verde UMB", value: "bg-green-50 text-umb-verde border-green-200"}
+        ]}
+      - {label: "Descripción de la carrera", name: "descripcion", widget: "text"}

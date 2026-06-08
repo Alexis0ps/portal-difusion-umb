@@ -1,19 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const archivos = import.meta.glob('../content/noticias/*.md', { eager: true });
-const todasLasNoticias = Object.keys(archivos).map(ruta => ({ ...(archivos[ruta] as any), file: ruta }));
+const archivos = import.meta.glob("../content/noticias/*.md", { eager: true });
+const todasLasNoticias = Object.keys(archivos).map((ruta) => ({
+	...(archivos[ruta] as any),
+	file: ruta,
+}));
 const noticiasRecientes = todasLasNoticias
-    .sort((a: any, b: any) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf())
-    .slice(0, 3);
+	.sort(
+		(a: any, b: any) =>
+			new Date(b.frontmatter.date).valueOf() -
+			new Date(a.frontmatter.date).valueOf(),
+	)
+	.slice(0, 3);
 ---
-
-new Date(a.frontmatter.date).valueOf(), ) .slice(0, 3); ---
 
 <Layout>
 	{/* --- TU DISEÑO ORIGINAL DEL INICIO (HERO) --- */}
-	<main
-		class="relative min-h-screen flex items-center justify-center pt-32 pb-12 overflow-hidden bg-white"
+	<section
+		class="w-full relative py-12 lg:py-24 flex items-center justify-center overflow-hidden bg-white"
 	>
 		<div
 			class="absolute -top-20 -left-20 w-[600px] h-[600px] bg-umb-verde/15 z-0 animate-bubble"
@@ -32,7 +37,7 @@ new Date(a.frontmatter.date).valueOf(), ) .slice(0, 3); ---
 		</div>
 
 		<div
-			class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6 relative z-10"
+			class="max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
 		>
 			<div class="flex flex-col gap-6 z-10">
 				<h1
@@ -162,11 +167,15 @@ new Date(a.frontmatter.date).valueOf(), ) .slice(0, 3); ---
 				</div>
 			</div>
 		</div>
-	</main>
+	</section>
 
 	{/* --- NUEVA SECCIÓN: ÚLTIMAS NOTICIAS --- */}
-	<section class="py-24 bg-gray-50 border-t border-gray-100 relative z-20">
-		<div class="container mx-auto px-5">
+	<section
+		class="w-full py-24 bg-gray-50 border-t border-gray-100 relative z-20"
+	>
+		<div
+			class="max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 relative z-10"
+		>
 			<div class="flex justify-between items-end mb-12">
 				<div>
 					<span

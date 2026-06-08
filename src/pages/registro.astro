@@ -3,164 +3,160 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <main class="min-h-screen bg-white pt-32 pb-24 font-sans">
-        <div class="max-w-3xl mx-auto px-5">
-            <!-- Encabezado -->
-            <div class="text-center mb-12">
-                <h1
-                    class="text-5xl md:text-6xl font-extrabold text-[#7CB342] tracking-tight mb-6"
-                >
-                    Registro de Aspirantes
-                </h1>
-                <p
-                    class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto font-medium"
-                >
-                    Déjanos tus datos para iniciar tu proceso de admisión a la
-                    Universidad Mexiquense del Bicentenario.
-                </p>
-            </div>
-
-            <!-- Contenedor del Formulario -->
-            <div
-                class="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 md:p-12 border border-gray-100"
-            >
-                <!-- AQUÍ ESTÁ LA MAGIA DE NETLIFY: data-netlify="true" -->
-                <form
-                    name="registro-aspirantes"
-                    method="POST"
-                    data-netlify="true"
-                    netlify-honeypot="bot-field"
-                    class="space-y-6"
-                >
-                    <!-- Campo oculto anti-spam -->
-                    <p class="hidden">
-                        <label
-                            >No llenes esto si eres humano: <input
-                                name="bot-field"
-                            /></label
-                        >
+    <section class="w-full relative bg-slate-50 py-12 md:py-20 flex-grow">
+        <div
+            class="max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 relative z-10"
+        >
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <h1
+                        class="text-5xl md:text-6xl font-extrabold text-[#7CB342] tracking-tight mb-6"
+                    >
+                        Registro de Aspirantes
+                    </h1>
+                    <p
+                        class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto font-medium"
+                    >
+                        Déjanos tus datos para iniciar tu proceso de admisión a
+                        la Universidad Mexiquense del Bicentenario.
                     </p>
+                </div>
 
-                    <!-- Fila 1: Nombres y Apellidos -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div
+                    class="bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 md:p-12 border border-gray-100"
+                >
+                    <form
+                        name="registro-aspirantes"
+                        method="POST"
+                        data-netlify="true"
+                        netlify-honeypot="bot-field"
+                        class="space-y-6"
+                    >
+                        <p class="hidden">
+                            <label
+                                >No llenes esto si eres humano: <input
+                                    name="bot-field"
+                                /></label
+                            >
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label
+                                    class="block text-sm font-extrabold text-gray-900 mb-2"
+                                    for="nombres">Nombre(s) *</label
+                                >
+                                <input
+                                    type="text"
+                                    id="nombres"
+                                    name="nombres"
+                                    required
+                                    placeholder="Ej. Juan"
+                                    class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-sm font-extrabold text-gray-900 mb-2"
+                                    for="apellidos">Apellidos *</label
+                                >
+                                <input
+                                    type="text"
+                                    id="apellidos"
+                                    name="apellidos"
+                                    required
+                                    placeholder="Ej. Pérez García"
+                                    class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label
+                                    class="block text-sm font-extrabold text-gray-900 mb-2"
+                                    for="correo">Correo Electrónico *</label
+                                >
+                                <input
+                                    type="email"
+                                    id="correo"
+                                    name="correo"
+                                    required
+                                    placeholder="juan@correo.com"
+                                    class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-sm font-extrabold text-gray-900 mb-2"
+                                    for="telefono">Teléfono Celular *</label
+                                >
+                                <input
+                                    type="tel"
+                                    id="telefono"
+                                    name="telefono"
+                                    required
+                                    placeholder="10 dígitos"
+                                    class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
+                                />
+                            </div>
+                        </div>
+
                         <div>
                             <label
                                 class="block text-sm font-extrabold text-gray-900 mb-2"
-                                for="nombres">Nombre(s) *</label
+                                for="curp">CURP *</label
                             >
                             <input
                                 type="text"
-                                id="nombres"
-                                name="nombres"
+                                id="curp"
+                                name="curp"
                                 required
-                                placeholder="Ej. Juan"
-                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
+                                placeholder="INGRESA TUS 18 CARACTERES"
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white uppercase"
+                                maxlength="18"
                             />
                         </div>
+
                         <div>
                             <label
                                 class="block text-sm font-extrabold text-gray-900 mb-2"
-                                for="apellidos">Apellidos *</label
+                                for="carrera">Carrera de Interés *</label
                             >
-                            <input
-                                type="text"
-                                id="apellidos"
-                                name="apellidos"
+                            <select
+                                id="carrera"
+                                name="carrera"
                                 required
-                                placeholder="Ej. Pérez García"
-                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
-                            />
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white appearance-none cursor-pointer"
+                            >
+                                <option value="" disabled selected
+                                    >Selecciona una opción...</option
+                                >
+                                <option value="Licenciatura en Derecho"
+                                    >Licenciatura en Derecho</option
+                                >
+                                <option value="Ingeniería Industrial"
+                                    >Ingeniería Industrial</option
+                                >
+                                <option
+                                    value="Ingeniería en Tecnologías de la Información"
+                                    >Ingeniería en Tecnologías de la Información</option
+                                >
+                            </select>
                         </div>
-                    </div>
 
-                    <!-- Fila 2: Correo y Teléfono -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label
-                                class="block text-sm font-extrabold text-gray-900 mb-2"
-                                for="correo">Correo Electrónico *</label
+                        <div class="pt-4">
+                            <button
+                                type="submit"
+                                class="w-full bg-[#7CB342] text-white font-extrabold text-lg py-4 rounded-2xl hover:bg-emerald-700 hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-green-500/30"
                             >
-                            <input
-                                type="email"
-                                id="correo"
-                                name="correo"
-                                required
-                                placeholder="juan@correo.com"
-                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
-                            />
+                                Enviar Registro 📝
+                            </button>
                         </div>
-                        <div>
-                            <label
-                                class="block text-sm font-extrabold text-gray-900 mb-2"
-                                for="telefono">Teléfono Celular *</label
-                            >
-                            <input
-                                type="tel"
-                                id="telefono"
-                                name="telefono"
-                                required
-                                placeholder="10 dígitos"
-                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white"
-                            />
-                        </div>
-                    </div>
-
-                    <!-- Fila 3: CURP -->
-                    <div>
-                        <label
-                            class="block text-sm font-extrabold text-gray-900 mb-2"
-                            for="curp">CURP *</label
-                        >
-                        <input
-                            type="text"
-                            id="curp"
-                            name="curp"
-                            required
-                            placeholder="INGRESA TUS 18 CARACTERES"
-                            class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white uppercase"
-                            maxlength="18"
-                        />
-                    </div>
-
-                    <!-- Fila 4: Carrera de Interés -->
-                    <div>
-                        <label
-                            class="block text-sm font-extrabold text-gray-900 mb-2"
-                            for="carrera">Carrera de Interés *</label
-                        >
-                        <select
-                            id="carrera"
-                            name="carrera"
-                            required
-                            class="w-full px-5 py-4 rounded-2xl border border-gray-100 focus:border-umb-verde focus:ring-2 focus:ring-green-100 outline-none transition-all text-gray-700 bg-slate-50 focus:bg-white appearance-none cursor-pointer"
-                        >
-                            <option value="" disabled selected
-                                >Selecciona una opción...</option
-                            >
-                            <option value="Licenciatura en Derecho"
-                                >Licenciatura en Derecho</option
-                            >
-                            <option value="Ingeniería Industrial"
-                                >Ingeniería Industrial</option
-                            >
-                            <option
-                                value="Ingeniería en Tecnologías de la Información"
-                                >Ingeniería en Tecnologías de la Información</option
-                            >
-                        </select>
-                    </div>
-
-                    <!-- Botón de Envío -->
-                    <div class="pt-4">
-                        <button
-                            type="submit"
-                            class="w-full bg-[#7CB342] text-white font-extrabold text-lg py-4 rounded-2xl hover:bg-emerald-700 hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-green-500/30"
-                        >
-                            Enviar Registro 📝
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </main>
+    </section>
 </Layout>
+S

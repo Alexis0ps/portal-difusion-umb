@@ -9,72 +9,108 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<title>Portal UMB</title>
 	</head>
-	<body class="h-full bg-white text-gray-900 antialiased font-sans">
+	<body
+		class="min-h-screen flex flex-col bg-white text-gray-900 antialiased font-sans"
+	>
 		<header
 			class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100"
 		>
-			<nav
-				class="container mx-auto flex items-center justify-between p-5"
+			<div
+				class="max-w-[1400px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between p-5 relative"
 			>
-				<div class="flex items-center gap-2">
+				<div class="flex items-center gap-2 z-50">
 					<img
 						src="/img/logo_umb_final.png"
 						alt="UMB Logo"
-						class="h-16 w-auto z-0"
+						class="h-16 w-auto"
 					/>
 				</div>
-				<ul
-					class="flex items-center justify-end w-full gap-8 text-sm font-bold text-gray-600 pr-4"
+
+				<button
+					id="menu-toggle"
+					class="md:hidden text-gray-900 focus:outline-none z-50"
 				>
-					<li>
-						<a
-							href="/"
-							class="hover:text-umb-verde transition-colors duration-300"
-							>Inicio</a
-						>
-					</li>
-					<li>
-						<a
-							href="/noticias"
-							class="hover:text-umb-verde transition-colors duration-300"
-							>Noticias</a
-						>
-					</li>
-					<li>
-						<a
-							href="/convocatorias"
-							class="hover:text-umb-verde transition-colors duration-300"
-							>Convocatorias</a
-						>
-					</li>
-					<li>
-						<a
-							href="/oferta-academica"
-							class="hover:text-umb-verde transition-colors duration-300"
-							>Oferta Académica</a
-						>
-					</li>
-					<li>
-						<a
-							href="/bolsa-de-trabajo"
-							class="hover:text-umb-verde transition-colors duration-300"
-							>Bolsa de Trabajo</a
-						>
-					</li>
-				</ul>
-			</nav>
+					<svg
+						class="w-8 h-8"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							id="icono-menu"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
+
+				<nav
+					id="mobile-menu"
+					class="hidden absolute top-0 left-0 w-full h-screen bg-white pt-32 flex-col items-center gap-8 text-xl font-bold text-gray-600 transition-all duration-300 z-40 md:bg-transparent md:h-auto md:pt-0 md:static md:flex md:flex-row md:w-auto md:text-sm md:justify-end pr-4"
+				>
+					<a
+						href="/"
+						class="hover:text-umb-verde transition-colors duration-300"
+						>Inicio</a
+					>
+					<a
+						href="/noticias"
+						class="hover:text-umb-verde transition-colors duration-300"
+						>Noticias</a
+					>
+					<a
+						href="/convocatorias"
+						class="hover:text-umb-verde transition-colors duration-300"
+						>Convocatorias</a
+					>
+					<a
+						href="/oferta-academica"
+						class="hover:text-umb-verde transition-colors duration-300"
+						>Oferta Académica</a
+					>
+					<a
+						href="/bolsa-de-trabajo"
+						class="hover:text-umb-verde transition-colors duration-300"
+						>Bolsa de Trabajo</a
+					>
+				</nav>
+			</div>
 		</header>
 
-		<slot />
+		<main
+			class="w-full flex-grow mt-24 pb-12 flex flex-col justify-start relative z-10"
+		>
+			<slot />
+		</main>
 
 		<footer
-			class="w-full text-center p-6 border-t border-gray-100 bg-white relative z-20 mt-12"
+			class="w-full text-center p-6 border-t border-gray-100 bg-white relative z-20 mt-auto"
 		>
 			<p class="text-sm font-medium text-gray-500">
 				<span class="text-umb-verde"></span> Universidad Mexiquense del Bicentenario
 				<span class="text-umb-verde"></span>
 			</p>
 		</footer>
+
+		<script is:inline>
+			const btn = document.getElementById("menu-toggle");
+			const menu = document.getElementById("mobile-menu");
+			const icono = document.getElementById("icono-menu");
+
+			if (btn && menu && icono) {
+				btn.addEventListener("click", () => {
+					menu.classList.toggle("hidden");
+					menu.classList.toggle("flex");
+
+					if (menu.classList.contains("flex")) {
+						icono.setAttribute("d", "M6 18L18 6M6 6l12 12");
+					} else {
+						icono.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+					}
+				});
+			}
+		</script>
 
 		<script
 			is:inline

@@ -32,6 +32,12 @@ import Layout from "../layouts/Layout.astro";
                         netlify-honeypot="bot-field"
                         class="space-y-6"
                     >
+                        <input
+                            type="hidden"
+                            name="form-name"
+                            value="registro-aspirantes"
+                        />
+
                         <p class="hidden">
                             <label
                                 >No llenes esto si eres humano: <input
@@ -159,4 +165,3 @@ import Layout from "../layouts/Layout.astro";
         </div>
     </section>
 </Layout>
-S

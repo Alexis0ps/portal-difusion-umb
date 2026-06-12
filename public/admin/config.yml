@@ -61,3 +61,16 @@ collections:
           {label: "Verde UMB", value: "bg-green-50 text-umb-verde border-green-200"}
         ]}
       - {label: "Descripción de la carrera", name: "descripcion", widget: "text"}
+
+      - name: "bolsa-trabajo"
+    label: "Bolsa de Trabajo"
+    label_singular: "Vacante"
+    folder: "src/content/bolsa-de-trabajo" # Asegúrate de tener esta carpeta en tu src/content/
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título de la Vacante", name: "title", widget: "string" }
+      - { label: "Empresa o Institución", name: "empresa", widget: "string" }
+      - { label: "Ubicación", name: "ubicacion", widget: "string" }
+      - { label: "Fecha de Publicación", name: "date", widget: "datetime" }
+      - { label: "Descripción del Puesto y Requisitos", name: "body", widget: "markdown" }

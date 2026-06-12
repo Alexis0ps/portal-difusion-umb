@@ -1,16 +1,14 @@
-# public/admin/config.yml
-
 # 1. CONFIGURACIÓN GLOBAL
-locale: "es" # Traduce todo el panel de administración al español
+locale: "es"
 backend:
   name: git-gateway
-  branch: main # Asegúrate de que tu rama en GitHub se llame 'main' (o cámbialo a 'master')
+  branch: main
 
 # 2. RUTAS DE ARCHIVOS MULTIMEDIA
-media_folder: "public/img/uploads" # Dónde se guardan las imágenes y PDFs en tu repositorio
-public_folder: "/img/uploads"      # Cómo las lee el navegador en la página web
+media_folder: "public/img/uploads"
+public_folder: "/img/uploads"
 
-# 3. COLECCIONES DE DATOS (Lo que el usuario puede editar)
+# 3. COLECCIONES DE DATOS
 collections:
   
   # --- SECCIÓN: NOTICIAS ---
@@ -36,7 +34,6 @@ collections:
     fields:
       - {label: "Título de la Convocatoria", name: "title", widget: "string"}
       - {label: "Fecha de cierre (Límite)", name: "deadline", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false}
-      # Restringimos este campo para que SOLO acepte PDFs
       - {label: "Documento PDF Oficial", name: "pdf_link", widget: "file", required: false, extension: ["pdf"]}
       - {label: "Descripción o Requisitos", name: "body", widget: "markdown"}
 
@@ -53,7 +50,6 @@ collections:
       - {label: "Duración", name: "duracion", widget: "string", default: "9 semestres"}
       - {label: "Modalidad", name: "modalidad", widget: "select", options: ["Presencial", "En línea", "Híbrida"], default: "Presencial"}
       - {label: "Ícono (Emoji)", name: "icono", widget: "string", hint: "Copia y pega un emoji representativo. Ej. ⚖️, 💻, ⚙️"}
-      # El color lo dejamos como un selector para que el administrador no tenga que escribir código CSS
       - {label: "Color de la Tarjeta", name: "color", widget: "select", options: [
           {label: "Naranja (Derecho)", value: "bg-amber-50 text-amber-600 border-amber-200"},
           {label: "Azul (Industrial)", value: "bg-blue-50 text-blue-600 border-blue-200"},
@@ -62,7 +58,7 @@ collections:
         ]}
       - {label: "Descripción de la carrera", name: "descripcion", widget: "text"}
 
-      # --- SECCIÓN: BOLSA DE TRABAJO ---
+  # --- SECCIÓN: BOLSA DE TRABAJO ---
   - name: "bolsa-trabajo"
     label: "Bolsa de Trabajo"
     label_singular: "Vacante"

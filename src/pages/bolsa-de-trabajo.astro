@@ -25,28 +25,104 @@ import Layout from "../layouts/Layout.astro";
                     <p class="text-gray-600 text-lg mb-10 font-medium">
                         En la Universidad Mexiquense del Bicentenario estamos en
                         constante búsqueda de talento. Si deseas formar parte de
-                        nuestra plantilla docente o del área administrativa,
-                        envíanos tu información.
+                        nuestra plantilla docente o administrativa, envíanos tus
+                        datos.
                     </p>
 
                     <div
                         class="bg-white p-8 rounded-[1.5rem] shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col gap-4"
                     >
                         <h3 class="text-2xl font-bold text-gray-900 font-serif">
-                            Envía tu Currículum
+                            Postúlate a una vacante
                         </h3>
-                        <p class="text-gray-500 mb-2">
-                            Nuestro departamento de Recursos Humanos revisará tu
-                            perfil para considerarte en futuras oportunidades
-                            laborales.
+                        <p class="text-gray-500 mb-4 text-sm">
+                            Llena este formulario y Recursos Humanos se pondrá
+                            en contacto contigo.
                         </p>
-                        <!-- Aquí está tu botón con el mailto inteligente -->
-                        <a
-                            href="mailto:recursos.humanos@umb.edu.mx?subject=Postulación%20Bolsa%20de%20Trabajo%20UMB&body=Hola%20equipo%20de%20Recursos%20Humanos,%0A%0AAdjunto%20mi%20Currículum%20Vitae%20para%20consideración%20en%20futuras%20vacantes.%0A%0A[Escribe%20aquí%20una%20breve%20presentación]%0A%0ASaludos."
-                            class="w-full bg-umb-verde text-center text-white font-extrabold text-lg py-4 rounded-xl hover:bg-emerald-700 transition-all duration-300 shadow-md hover:-translate-y-1 inline-block"
+
+                        <form
+                            name="bolsa-trabajo"
+                            method="POST"
+                            data-netlify="true"
+                            netlify-honeypot="bot-field"
+                            class="flex flex-col gap-4"
                         >
-                            Enviar CV por correo ✉️
-                        </a>
+                            <p class="hidden">
+                                <label
+                                    >No llenes esto: <input
+                                        name="bot-field"
+                                    /></label>
+                            </p>
+                            <input
+                                type="hidden"
+                                name="form-name"
+                                value="bolsa-trabajo"
+                            />
+
+                            <div>
+                                <label
+                                    class="block text-sm font-semibold text-gray-700 mb-1"
+                                    >Nombre Completo</label
+                                >
+                                <input
+                                    type="text"
+                                    name="nombre"
+                                    required
+                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-umb-verde focus:ring-umb-verde p-2.5 border"
+                                    placeholder="Ej. Juan Pérez"
+                                />
+                            </div>
+
+                            <div>
+                                <label
+                                    class="block text-sm font-semibold text-gray-700 mb-1"
+                                    >Correo Electrónico</label
+                                >
+                                <input
+                                    type="email"
+                                    name="email"
+                                    required
+                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-umb-verde focus:ring-umb-verde p-2.5 border"
+                                    placeholder="correo@ejemplo.com"
+                                />
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-sm font-semibold text-gray-700 mb-1"
+                                        >Teléfono</label
+                                    >
+                                    <input
+                                        type="tel"
+                                        name="telefono"
+                                        required
+                                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-umb-verde focus:ring-umb-verde p-2.5 border"
+                                        placeholder="55 1234 5678"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-sm font-semibold text-gray-700 mb-1"
+                                        >Vacante</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="vacante"
+                                        required
+                                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-umb-verde focus:ring-umb-verde p-2.5 border"
+                                        placeholder="Ej. Docente TICs"
+                                    />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="w-full mt-2 bg-umb-verde text-center text-white font-extrabold text-lg py-3 rounded-xl hover:bg-emerald-700 transition-all duration-300 shadow-md hover:-translate-y-1"
+                            >
+                                Enviar Postulación ✉️
+                            </button>
+                        </form>
                     </div>
                 </div>
 

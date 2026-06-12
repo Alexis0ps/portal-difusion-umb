@@ -28,21 +28,6 @@ import Layout from "../layouts/Layout.astro";
                         nuestra plantilla docente o del área administrativa,
                         envíanos tu información.
                     </p>
-                    <form
-                        name="postulaciones-bolsa"
-                        method="POST"
-                        action="/exito.html"
-                        data-netlify="true"
-                        netlify-honeypot="bot-field"
-                        data-astro-reload
-                        class="space-y-6"
-                    >
-                        <input
-                            type="hidden"
-                            name="form-name"
-                            value="postulaciones-bolsa"
-                        />
-                    </form>
 
                     <div
                         class="bg-white p-8 rounded-[1.5rem] shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col gap-4"
@@ -55,8 +40,9 @@ import Layout from "../layouts/Layout.astro";
                             perfil para considerarte en futuras oportunidades
                             laborales.
                         </p>
+                        <!-- Aquí está tu botón con el mailto inteligente -->
                         <a
-                            href="mailto:recursos.humanos@umb.edu.mx"
+                            href="mailto:recursos.humanos@umb.edu.mx?subject=Postulación%20Bolsa%20de%20Trabajo%20UMB&body=Hola%20equipo%20de%20Recursos%20Humanos,%0A%0AAdjunto%20mi%20Currículum%20Vitae%20para%20consideración%20en%20futuras%20vacantes.%0A%0A[Escribe%20aquí%20una%20breve%20presentación]%0A%0ASaludos."
                             class="w-full bg-umb-verde text-center text-white font-extrabold text-lg py-4 rounded-xl hover:bg-emerald-700 transition-all duration-300 shadow-md hover:-translate-y-1 inline-block"
                         >
                             Enviar CV por correo ✉️

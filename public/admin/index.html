@@ -9,6 +9,63 @@
     <title>Panel de Administración | UMB</title>
 
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+        /* Fondo del login más limpio */
+        body {
+            background-color: #f8fafc !important;
+        }
+
+        /* Botón de inicio de sesión verde UMB */
+        .css-1u48r4w-LoginButton {
+            background-color: #7CB342 !important;
+            color: white !important;
+            border-radius: 12px !important;
+            font-weight: bold !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .css-1u48r4w-LoginButton:hover {
+            background-color: #689f38 !important;
+            transform: translateY(-2px) !important;
+        }
+
+        /* Inyectar Logo Institucional de la UMB en el login y panel */
+        div[class^="nc-app-layout"]::before,
+        .css-10901e1-AppMainContainer::before {
+            content: "";
+            display: block;
+            width: 180px;
+            height: 80px;
+            margin: 20px auto;
+            background-image: url("https://silver-starship-90a18c.netlify.app/img/logo_umb_final.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Barra superior del panel en tono oscuro elegante con borde verde */
+        header[class^="nc-app-header"] {
+            background-color: #0f172a !important;
+            border-bottom: 4px solid #7CB342 !important;
+        }
+
+        /* Botones principales de edición (Guardar, Publicar, Nuevo) */
+        button[class^="nc-collection-page-sidebar-button"],
+        a[class^="nc-app-header-link"],
+        .css-18v3m3f-StyledButton-button-default-m-btn {
+            background-color: #7CB342 !important;
+            color: white !important;
+            border-radius: 8px !important;
+        }
+
+        /* Resaltar la sección activa en el menú izquierdo (ej. Noticias) */
+        .css-1b6m6q7-sidebarLink-active {
+            color: #7CB342 !important;
+            border-left: 4px solid #7CB342 !important;
+            font-weight: bold !important;
+        }
+    </style>
 </head>
 
 <body>
